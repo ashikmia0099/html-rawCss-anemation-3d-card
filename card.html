@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgb(13, 19, 49);
+        display: flex;
+    }
+
+    .cardsecdiv{
+        display: flex;
+    
+        padding: 15px 25px;
+        border-radius: 12px;
+        background-color: rgba(60, 73, 99, 0.507);
+    }
+    .cardsecdiv:hover{
+       background-image: linear-gradient(to right, #4ead82d7, #49dd9ab6)
+    }
+
+    .carddiv {
+        height: 150px;
+        width: 300px;
+        border-radius: 20px;
+        border: none;
+        background-color: aquamarine;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        border:none;
+        padding: 10px;
+        padding-left: 50px;
+        padding-right: 20px;
+        border-radius: 10px;
+
+    }
+
+    .carddiv:hover{
+        border: none;
+    }
+    
+    
+
+    .carddivimage {
+        position: relative;
+        /* width: 400px;
+        height: 200px; */
+        transform-style: preserve-3d;
+        transition: transform 0.6s ease-in-out;
+        cursor: pointer;
+
+    }
+
+    .carddivimage:hover {
+        transform: rotateY(-45deg);
+
+    }
+
+
+    .card-container {
+        perspective: 350px;
+    }
+
+
+  
+
+    /* text section */
+
+    .honetext {
+        font-size: 50px;
+        color: white;
+        width: 50%;
+    }
+</style>
+
+<body>
+    <div>
+        <div class="cardsecdiv">
+            <!-- text section -->
+            <div>
+                <h1 class="honetext">Dragon News</h1>
+            </div>
+            <!-- image section -->
+            <div class="card-container">
+                <div class="carddivimage">
+                    <div class="carddiv">
+                        <h1>Card</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

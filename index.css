@@ -1,0 +1,45 @@
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.roadmap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.milestone {
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.milestone h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #8b5cf6;
+}
+
+.milestone p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.line {
+    width: 4px;
+    height: 30px;
+    background: #8b5cf6;
+}

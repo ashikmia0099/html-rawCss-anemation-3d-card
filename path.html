@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket Scroll Animation</title>
+    <style>
+        body {
+            background-color: #282c34;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-family: sans-serif;
+            margin-top: 200;
+        
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+        }
+
+        .rocketdiv {
+            width: 50px; /* Adjust size as needed */
+            position: absolute;
+            top: -13px;
+            left: -17px;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+           
+            
+        }
+
+        svg {
+            position: relative;
+            width: 600px;
+            height: 2400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="rocketdiv" id="rocket" src="images/Rocket.webp" alt="Rocket">
+        
+        <svg width="584" height="2402" viewBox="0 0 584 2402" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="motionPath" d="M0 2H492C534.426 2 555.64 2 568.82 15.1802C582 28.3604 582 49.5736 582 92V234.142C582 276.569 582 297.782 568.82 310.962C555.64 324.142 534.426 324.142 492 324.142H139.105C96.6789 324.142 75.4657 324.142 62.2855 337.323C49.1053 350.503 49.1053 371.716 49.1053 414.142V553.15C49.1053 595.576 49.1053 616.789 62.2855 629.969C75.4657 643.15 96.6789 643.15 139.105 643.15H492C534.426 643.15 555.64 643.15 568.82 656.33C582 669.51 582 690.723 582 733.15V905.86C582 948.287 582 969.5 568.82 982.68C555.64 995.86 534.426 995.86 492 995.86H139.105C96.6789 995.86 75.4657 995.86 62.2855 1009.04C49.1053 1022.22 49.1053 1043.43 49.1053 1085.86V1255.44C49.1053 1297.86 49.1053 1319.08 62.2855 1332.26C75.4657 1345.44 96.6789 1345.44 139.105 1345.44H492C534.426 1345.44 555.64 1345.44 568.82 1358.62C582 1371.8 582 1393.01 582 1435.44V1613.63C582 1656.06 582 1677.27 568.82 1690.45C555.64 1703.63 534.426 1703.63 492 1703.63H139.105C96.6789 1703.63 75.4657 1703.63 62.2855 1716.81C49.1053 1729.99 49.1053 1751.21 49.1053 1793.63V1943.61C49.1053 1986.04 49.1053 2007.25 62.2855 2020.43C75.4657 2033.61 96.6789 2033.61 139.105 2033.61H301.5C343.926 2033.61 365.14 2033.61 378.32 2046.79C391.5 2059.97 391.5 2081.19 391.5 2123.61V2402" 
+            stroke="#00D4FF" stroke-width="2" stroke-dasharray="5 5"/>
+        </svg>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const rocket = document.getElementById("rocket");
+            const path = document.getElementById("motionPath");
+            const pathLength = path.getTotalLength();
+            let maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            let lastScroll = window.scrollY;
+
+            function updateRocketPosition() {
+                let scrollY = window.scrollY;
+                let direction = scrollY > lastScroll ? 1 : -1; // Detect scroll direction
+                
+                // Map scroll position to path length
+                let percentage = scrollY / maxScroll;
+                let pathPosition = percentage * pathLength;
+                
+                // Get current point
+                let point = path.getPointAtLength(pathPosition);
+                
+                // Get next point for angle calculation
+                let nextPoint = path.getPointAtLength(Math.min(pathPosition + 1, pathLength));
+                
+                // Calculate angle
+                let dx = nextPoint.x - point.x;
+                let dy = nextPoint.y - point.y;
+                let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+                // Adjust rotation for scrolling direction
+                if (direction === -1) {
+                    angle += 180; // Flip the rocket when scrolling up
+                }
+
+                // Move and rotate the rocket
+                rocket.style.transform = `translate(${point.x}px, ${point.y}px) rotate(${angle}deg)`;
+
+                lastScroll = scrollY; // Update last scroll position
+            }
+
+            // Listen to scroll events
+            window.addEventListener("scroll", updateRocketPosition);
+            updateRocketPosition(); // Initial position update
+        });
+    </script>
+</body>
+</html>
